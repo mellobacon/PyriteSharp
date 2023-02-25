@@ -12,5 +12,6 @@ public class BoundBinaryExpression : BoundExpression
         this.right = right;
     }
 
+    public override Type ValueType => op!.ExpectedType;
     public override BoundType BoundType => BoundType.BINARY;
 }

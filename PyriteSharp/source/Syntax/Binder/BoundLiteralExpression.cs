@@ -8,5 +8,6 @@ public class BoundLiteralExpression : BoundExpression
         this.value = value;
     }
 
+    public override Type ValueType => value!.GetType();
     public override BoundType BoundType => BoundType.LITERAL;
 }

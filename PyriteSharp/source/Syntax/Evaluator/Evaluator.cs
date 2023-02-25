@@ -52,12 +52,6 @@ public class Evaluator
     }
     private object? EvaluateLiteral(BoundLiteralExpression expression)
     {
-        if (expression.value is null) return null;
-        if (int.TryParse((string)expression.value, out int v))
-        {
-            return v;
-        }
-
-        return 0;
+        return expression.value;
     }
 }
