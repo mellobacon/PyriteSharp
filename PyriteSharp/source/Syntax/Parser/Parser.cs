@@ -68,7 +68,14 @@ public class Parser
 
     private Expression ParseLiteralExpression()
     {
+        if (_current.tokentype == TokenType.LEFT_PAREN)
+        {
+            Token leftparen = GetNextToken();
+            Expression expression = ParseExpression();
+            Token rightparen = GetNextToken();
+            return new GroupedExpression(leftparen, expression, rightparen);
+        }
         Token number = GetNextToken();
-        return new LiteralExpression(number, number.text);
+        return new LiteralExpression(number, number.value);
     }
 }

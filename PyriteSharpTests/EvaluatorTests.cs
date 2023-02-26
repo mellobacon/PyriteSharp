@@ -17,7 +17,7 @@ public class EvaluatorTests
             ("1 + 2 + 3", 6),
             ("1 + 2 * 3", 7),
             ("(1 + 2) * 3;", 9),
-            ("1 / 2", 1),
+            ("1 / 2", 0),
             ("1 % 2", 1),
         };
         foreach ((string text, object value) in evals)

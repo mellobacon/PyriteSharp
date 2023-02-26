@@ -101,4 +101,34 @@ public class ParserTests
             TokenType.NUMBER,
         });
     }
+
+    [Fact]
+    private void ParserParsesGroupedExpressions()
+    {
+        CheckParse("(1)", new []
+        {
+            TokenType.GROUPED_EXPRESSION,
+            TokenType.LEFT_PAREN,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_PAREN
+        });
+        
+        CheckParse("(1 + 2) * 3", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.GROUPED_EXPRESSION,
+            TokenType.LEFT_PAREN,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.PLUS,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_PAREN,
+            TokenType.STAR,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+    }
 }
