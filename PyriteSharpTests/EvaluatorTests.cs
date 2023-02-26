@@ -12,13 +12,17 @@ public class EvaluatorTests
         var evals = new (string text, object value)[]
         {
             ("100", 100),
+            ("1.00", 1.0f),
             ("5 - 2", 3),
+            ("5 - 2.5", 2.5f),
             ("6 % 2", 0),
+            ("6 % 2.3", 1),
             ("1 + 2 + 3", 6),
             ("1 + 2 * 3", 7),
-            ("(1 + 2) * 3;", 9),
+            ("(1 + 2) * 3", 9),
             ("1 / 2", 0),
-            ("1 % 2", 1),
+            ("1.0 / 2.0", 0.5f),
+            ("1.0 / 2", 0.5f),
         };
         foreach ((string text, object value) in evals)
         {

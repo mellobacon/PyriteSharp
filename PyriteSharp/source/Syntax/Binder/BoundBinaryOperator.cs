@@ -19,10 +19,29 @@ public class BoundBinaryOperator
     private static readonly BoundBinaryOperator[] _operators =
     {
         new BoundBinaryOperator(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(int), typeof(int), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(float), typeof(float), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(int), typeof(float), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(float), typeof(int), typeof(float)),
+        
         new BoundBinaryOperator(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(int), typeof(int), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(float), typeof(float), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(float), typeof(int), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(int), typeof(float), typeof(float)),
+        
         new BoundBinaryOperator(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(int), typeof(int), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(float), typeof(float), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(float), typeof(int), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(int), typeof(float), typeof(float)),
+        
         new BoundBinaryOperator(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(int), typeof(int), typeof(int)),
-        new BoundBinaryOperator(BoundBinaryType.MOD, TokenType.MOD, typeof(int), typeof(int), typeof(int))
+        new BoundBinaryOperator(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(float), typeof(float), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(float), typeof(int), typeof(float)),
+        new BoundBinaryOperator(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(int), typeof(float), typeof(float)),
+        
+        new BoundBinaryOperator(BoundBinaryType.MOD, TokenType.MOD, typeof(int), typeof(int), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.MOD, TokenType.MOD, typeof(float), typeof(int), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.MOD, TokenType.MOD, typeof(int), typeof(float), typeof(int)),
+        new BoundBinaryOperator(BoundBinaryType.MOD, TokenType.MOD, typeof(float), typeof(float), typeof(int))
     };
 
     public static BoundBinaryOperator? GetBinaryOperator(Type left, TokenType op, Type right)

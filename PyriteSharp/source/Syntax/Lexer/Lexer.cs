@@ -6,13 +6,14 @@ public class Lexer
     private int _position;
     private char _current;
     private TokenType _tokentype;
-    private string? _currenttext;
+    private string _currenttext;
     private object? _value;
 
     public Lexer(string text)
     {
         _text = text;
         _current = _text[0];
+        _currenttext = "";
     }
 
     private void Advance()
@@ -23,15 +24,23 @@ public class Lexer
 
     private void LexNumber()
     {
-        while (char.IsDigit(_current))
+        while (char.IsDigit(_current) || _current == '.')
         {
             _currenttext += _current;
             Advance();
         }
 
-        if (int.TryParse(_currenttext, out int value))
+        if (_currenttext.Contains('.') && !_currenttext.EndsWith('.'))
         {
-            _value = value;
+            if (float.TryParse(_currenttext, out float fvalue))
+            {
+                _value = fvalue;
+                _tokentype = TokenType.NUMBER;
+            }
+        }
+        else if (int.TryParse(_currenttext, out int ivalue))
+        {
+            _value = ivalue;
             _tokentype = TokenType.NUMBER;
         }
         else
@@ -102,7 +111,7 @@ public class Lexer
                 Advance();
                 break;
             default:
-                if (char.IsDigit(_current))
+                if (char.IsDigit(_current) || _current == '.')
                 {
                     LexNumber();
                     break;

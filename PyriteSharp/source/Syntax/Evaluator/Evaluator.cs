@@ -39,7 +39,6 @@ public class Evaluator
         {
             return null;
         }
-
         return expression.op?.BinaryType switch
         {
             BoundBinaryType.ADDITION => (int)left + (int)right,

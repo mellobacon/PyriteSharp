@@ -13,6 +13,9 @@ public class LexerTests
         {
             ("1", TokenType.NUMBER),
             ("100", TokenType.NUMBER),
+            ("1.00", TokenType.NUMBER),
+            ("10.0", TokenType.NUMBER),
+            (".100", TokenType.NUMBER),
             ("+", TokenType.PLUS),
             ("-", TokenType.MINUS),
             ("*", TokenType.STAR),
@@ -21,7 +24,9 @@ public class LexerTests
             ("=", TokenType.EQUAL),
             ("(", TokenType.LEFT_PAREN),
             (")", TokenType.RIGHT_PAREN),
-            ("test", TokenType.BAD_TOKEN)
+            ("1.0.0", TokenType.BAD_TOKEN),
+            ("..100", TokenType.BAD_TOKEN),
+            ("1.", TokenType.BAD_TOKEN),
         };
         foreach ((string text, TokenType type) in tokens)
         {
@@ -37,16 +42,8 @@ public class LexerTests
         {
             Token token = lexer.Lex();
             if (token.tokentype == TokenType.EOF_TOKEN) break;
-            if (token.tokentype == TokenType.BAD_TOKEN)
-            {
-                Assert.NotEqual(text, token.text);
-                Assert.Equal(type, token.tokentype);
-            }
-            else
-            {
-                Assert.Equal(text, token.text);
-                Assert.Equal(type, token.tokentype);
-            }
+            Assert.Equal(text, token.text);
+            Assert.Equal(type, token.tokentype);
         }
     }
 }
