@@ -39,6 +39,19 @@ public class Evaluator
         {
             return null;
         }
+
+        if (left is float || right is float)
+        {
+            return expression.op?.BinaryType switch
+            {
+                BoundBinaryType.ADDITION => Convert.ToSingle(left) + Convert.ToSingle(right),
+                BoundBinaryType.SUBTRACTION => Convert.ToSingle(left) - Convert.ToSingle(right),
+                BoundBinaryType.DIVISION => Convert.ToSingle(left) / Convert.ToSingle(right),
+                BoundBinaryType.MULTIPLICATION => Convert.ToSingle(left) * Convert.ToSingle(right),
+                BoundBinaryType.MOD => Convert.ToSingle(left) % Convert.ToSingle(right),
+                _ => null
+            };
+        }
         return expression.op?.BinaryType switch
         {
             BoundBinaryType.ADDITION => (int)left + (int)right,
