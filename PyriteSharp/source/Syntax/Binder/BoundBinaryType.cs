@@ -6,5 +6,7 @@ public enum BoundBinaryType
     SUBTRACTION,
     DIVISION,
     MULTIPLICATION,
-    MOD
+    MOD,
+    BITSHIFT_LEFT,
+    BITSHIFT_RIGHT
 }

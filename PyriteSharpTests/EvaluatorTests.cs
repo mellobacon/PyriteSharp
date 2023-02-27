@@ -24,6 +24,9 @@ public class EvaluatorTests
             ("1 / 2", 0),
             ("1.0 / 2.0", 0.5d),
             ("1.0 / 2", 0.5d),
+            ("0b_1111_0001 << 8", 0b1111000100000000),
+            ("0b01 << 1", 0b10),
+            ("0b010 >> 1", 0b001)
         };
         foreach ((string text, object value) in evals)
         {

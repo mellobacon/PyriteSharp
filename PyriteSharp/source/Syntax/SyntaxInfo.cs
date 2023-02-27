@@ -6,6 +6,8 @@ public static class SyntaxInfo
     {
         return type switch
         {
+            TokenType.DOUBLE_MORE_THAN => 3,
+            TokenType.DOUBLE_LESS_THAN => 3,
             TokenType.STAR => 2,
             TokenType.SLASH => 2,
             TokenType.MOD => 2,

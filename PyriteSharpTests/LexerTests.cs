@@ -23,12 +23,16 @@ public class LexerTests
             ("100f", TokenType.NUMBER),
             ("1.00d", TokenType.NUMBER),
             ("10.0f", TokenType.NUMBER),
+            ("0b00100", TokenType.NUMBER),
+            ("0b_00100", TokenType.NUMBER),
             ("+", TokenType.PLUS),
             ("-", TokenType.MINUS),
             ("*", TokenType.STAR),
             ("%", TokenType.MOD),
             ("/", TokenType.SLASH),
             ("=", TokenType.EQUAL),
+            (">>", TokenType.DOUBLE_MORE_THAN),
+            ("<<", TokenType.DOUBLE_LESS_THAN),
             ("(", TokenType.LEFT_PAREN),
             (")", TokenType.RIGHT_PAREN),
             ("1.0.0", TokenType.BAD_TOKEN),
@@ -36,6 +40,7 @@ public class LexerTests
             ("1.", TokenType.BAD_TOKEN),
             ("_100", TokenType.BAD_TOKEN),
             ("100_", TokenType.BAD_TOKEN),
+            ("0b10010f", TokenType.BAD_TOKEN),
         };
         foreach ((string text, TokenType type) in tokens)
         {

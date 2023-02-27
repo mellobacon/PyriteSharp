@@ -66,7 +66,10 @@ public class BoundBinaryOperator
         new(BoundBinaryType.MOD, TokenType.MOD, typeof(int), typeof(float), typeof(int)),
         new(BoundBinaryType.MOD, TokenType.MOD, typeof(float), typeof(float), typeof(int)),
         new(BoundBinaryType.MOD, TokenType.MOD, typeof(float), typeof(double), typeof(double)),
-        new(BoundBinaryType.MOD, TokenType.MOD, typeof(double), typeof(float), typeof(double))
+        new(BoundBinaryType.MOD, TokenType.MOD, typeof(double), typeof(float), typeof(double)),
+        
+        new(BoundBinaryType.BITSHIFT_LEFT, TokenType.DOUBLE_LESS_THAN, typeof(int), typeof(int), typeof(int)),
+        new(BoundBinaryType.BITSHIFT_RIGHT, TokenType.DOUBLE_MORE_THAN, typeof(int), typeof(int), typeof(int))
     };
 
     public static BoundBinaryOperator? GetBinaryOperator(Type left, TokenType op, Type right)

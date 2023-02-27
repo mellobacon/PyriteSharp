@@ -16,15 +16,24 @@ public class Lexer
         _currenttext = "";
     }
 
-    private void Advance()
+    private void Advance(int offset = 1)
     {
-        _position++;
+        _position += offset;
         _current = _position >= _text.Length ? '\0' : _text[_position];
+    }
+
+    private char Peek(int offset = 1)
+    {
+        int index = _position + offset;
+        return index >= _text.Length ? '\0' : _text[index];
     }
 
     private bool AttemptNumberConvert(string text)
     {
         bool hasdecimal = text.Contains('.');
+        bool hasprefix = text.StartsWith("0b");
+        
+        _value = text;
         switch (text[^1])
         {
             case 'f':
@@ -45,6 +54,12 @@ public class Lexer
                 }
                 break;
             default:
+                if (hasprefix)
+                {
+                    _value = Convert.ToInt32(text.Replace("0b", ""), 2);
+                    _tokentype = TokenType.NUMBER;
+                    return true;
+                }
                 if (int.TryParse(text, out int ivalue) && !hasdecimal)
                 {
                     _value = ivalue;
@@ -57,6 +72,7 @@ public class Lexer
                     _tokentype = TokenType.NUMBER;
                     return true;
                 }
+                
                 break;
         }
 
@@ -65,7 +81,7 @@ public class Lexer
 
     private void LexNumber()
     {
-        while (char.IsDigit(_current) || _current is '.' or '_' or 'f' or 'd')
+        while (char.IsDigit(_current) || _current is '.' or '_' or 'f' or 'd' or 'b')
         {
             _currenttext += _current;
             Advance();
@@ -134,6 +150,30 @@ public class Lexer
                 break;
             case '=':
                 _tokentype = TokenType.EQUAL;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '>':
+                if (Peek() == '>')
+                {
+                    _tokentype = TokenType.DOUBLE_MORE_THAN;
+                    _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
+                _tokentype = TokenType.MORE_THAN;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '<':
+                if (Peek() == '<')
+                {
+                    _tokentype = TokenType.DOUBLE_LESS_THAN;
+                    _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
+                _tokentype = TokenType.LESS_THAN;
                 _currenttext += _current;
                 Advance();
                 break;

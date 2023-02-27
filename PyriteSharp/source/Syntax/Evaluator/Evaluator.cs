@@ -62,6 +62,8 @@ public class Evaluator
             BoundBinaryType.DIVISION => leftvalue / rightvalue,
             BoundBinaryType.MULTIPLICATION => leftvalue * rightvalue,
             BoundBinaryType.MOD => leftvalue % rightvalue,
+            BoundBinaryType.BITSHIFT_LEFT => leftvalue << rightvalue,
+            BoundBinaryType.BITSHIFT_RIGHT => leftvalue >> rightvalue,
             _ => null
         };
         /*

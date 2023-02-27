@@ -44,6 +44,9 @@ public enum TokenType
     MORE_THAN,
     LESS_EQUAL,
     MORE_EQUAL,
+    
+    DOUBLE_LESS_THAN,
+    DOUBLE_MORE_THAN,
 
     LITERAL_EXPRESSION,
     BINARY_EXPRESSION,
