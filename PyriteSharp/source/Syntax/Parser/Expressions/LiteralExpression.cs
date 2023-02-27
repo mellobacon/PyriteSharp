@@ -3,11 +3,11 @@
 public class LiteralExpression : Expression
 {
     private readonly Token _token;
-    public object? value;
+    public readonly object? Value;
     public LiteralExpression(Token token, object? value)
     {
         _token = token;
-        this.value = value;
+        Value = value;
     }
 
     public override TokenType Type => TokenType.LITERAL_EXPRESSION;

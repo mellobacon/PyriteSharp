@@ -2,16 +2,16 @@
 
 public class BoundBinaryExpression : BoundExpression
 {
-    public BoundExpression left;
-    public BoundBinaryOperator? op;
-    public BoundExpression right;
+    public readonly BoundExpression Left;
+    public readonly BoundBinaryOperator? Op;
+    public readonly BoundExpression Right;
     public BoundBinaryExpression(BoundExpression left, BoundBinaryOperator? op, BoundExpression right)
     {
-        this.left = left;
-        this.op = op;
-        this.right = right;
+        Left = left;
+        Op = op;
+        Right = right;
     }
 
-    public override Type ValueType => op!.ExpectedType;
+    public override Type ValueType => Op!.ExpectedType;
     public override BoundType BoundType => BoundType.BINARY;
 }

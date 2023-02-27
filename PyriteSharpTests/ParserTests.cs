@@ -31,7 +31,7 @@ public class ParserTests
     private void CheckParse(string text, IReadOnlyList<TokenType> expectedtree)
     {
         Ast tree = Ast.Parse(text);
-        Expression expression = tree.root;
+        Expression expression = tree.Root;
         ParseTree t = new ParseTree(expression);
         for (int i = 0; i < t.Tree.Count; i++)
         {

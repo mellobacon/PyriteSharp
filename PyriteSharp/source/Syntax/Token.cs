@@ -4,15 +4,15 @@ namespace PyriteSharp.source.Syntax;
 
 public class Token : Node
 {
-    public string text;
-    public TokenType tokentype;
-    public object? value;
+    public readonly string Text;
+    public readonly TokenType Tokentype;
+    public readonly object? Value;
     public Token(string text, TokenType tokentype, object? value)
     {
-        this.text = text;
-        this.tokentype = tokentype;
-        this.value = value;
-        Type = this.tokentype;
+        Text = text;
+        Tokentype = tokentype;
+        Value = value;
+        Type = Tokentype;
     }
 
     public override TokenType Type { get; }

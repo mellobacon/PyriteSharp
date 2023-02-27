@@ -55,9 +55,9 @@ public class LexerTests
         while (true)
         {
             Token token = lexer.Lex();
-            if (token.tokentype == TokenType.EOF_TOKEN) break;
-            Assert.Equal(text, token.text);
-            Assert.Equal(type, token.tokentype);
+            if (token.Tokentype == TokenType.EOF_TOKEN) break;
+            Assert.Equal(text, token.Text);
+            Assert.Equal(type, token.Tokentype);
         }
     }
 }

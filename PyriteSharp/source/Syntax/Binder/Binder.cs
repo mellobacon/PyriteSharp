@@ -15,21 +15,22 @@ public class Binder
         };
     }
 
-    BoundExpression BindGroupedExpression(GroupedExpression expression)
+    private BoundExpression BindGroupedExpression(GroupedExpression expression)
     {
         return BindExpression(expression.Expression);
     }
-    BoundBinaryExpression BindBinaryExpression(BinaryExpression expression)
+
+    private BoundBinaryExpression BindBinaryExpression(BinaryExpression expression)
     {
-        BoundExpression left = BindExpression(expression.left);
-        BoundExpression right = BindExpression(expression.right);
-        BoundBinaryOperator? op = BoundBinaryOperator.GetBinaryOperator(left.ValueType, expression.op.Type, right.ValueType);
+        BoundExpression left = BindExpression(expression.Left);
+        BoundExpression right = BindExpression(expression.Right);
+        BoundBinaryOperator? op = BoundBinaryOperator.GetBinaryOperator(left.ValueType, expression.Op.Type, right.ValueType);
         return new BoundBinaryExpression(left, op, right);
     }
 
-    BoundLiteralExpression BindLiteralExpression(LiteralExpression expression)
+    private BoundLiteralExpression BindLiteralExpression(LiteralExpression expression)
     {
-        object value = expression.value ?? 0;
+        object value = expression.Value ?? 0;
         return new BoundLiteralExpression(value);
     }
 }

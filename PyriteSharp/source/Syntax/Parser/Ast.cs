@@ -4,10 +4,10 @@ namespace PyriteSharp.source.Syntax.Parser;
 
 public class Ast
 {
-    public readonly Expression root;
+    public readonly Expression Root;
     public Ast(Expression expression)
     {
-        root = expression;
+        Root = expression;
     }
 
     public static Ast Parse(string text)
@@ -52,15 +52,15 @@ public class Ast
         // Print numbers / token text
         if (node is Token token)
         {
-            if (token.value is not null)
+            if (token.Value is not null)
             {
                 Console.Write(" ");
-                Console.Write(token.value);
+                Console.Write(token.Value);
             }
             else
             {
                 Console.Write(" ");
-                Console.Write(token.text);
+                Console.Write(token.Text);
             }
         }
 

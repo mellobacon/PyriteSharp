@@ -2,12 +2,12 @@
 
 public class BoundLiteralExpression : BoundExpression
 {
-    public object? value;
+    public readonly object? Value;
     public BoundLiteralExpression(object? value)
     {
-        this.value = value;
+        Value = value;
     }
 
-    public override Type ValueType => value!.GetType();
+    public override Type ValueType => Value!.GetType();
     public override BoundType BoundType => BoundType.LITERAL;
 }

@@ -2,9 +2,9 @@
 
 public class GroupedExpression : Expression
 {
-    private Token _leftparen;
+    private readonly Token _leftparen;
     public readonly Expression Expression;
-    private Token _rightparen;
+    private readonly Token _rightparen;
     public GroupedExpression(Token leftparen, Expression expression, Token rightparen)
     {
         _leftparen = leftparen;

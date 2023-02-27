@@ -12,8 +12,8 @@ while (true)
     }
 
     Ast tree = Ast.Parse(input);
-    tree.PrintTree(tree.root);
+    tree.PrintTree(tree.Root);
     
-    Compilation compilation = new Compilation(tree.root);
+    Compilation compilation = new Compilation(tree.Root);
     Console.WriteLine(compilation.Evaluate());
 }

@@ -33,8 +33,8 @@ public class Evaluator
 
     private object? EvaluateBinaryExpression(BoundBinaryExpression expression)
     {
-        object? left = EvaluateExpression(expression.left);
-        object? right = EvaluateExpression(expression.right);
+        object? left = EvaluateExpression(expression.Left);
+        object? right = EvaluateExpression(expression.Right);
         if (left is null || right is null)
         {
             return null;
@@ -55,7 +55,7 @@ public class Evaluator
             int i => i,
             _ => null
         };
-        return expression.op?.BinaryType switch
+        return expression.Op?.BinaryType switch
         {
             BoundBinaryType.ADDITION => leftvalue + rightvalue,
             BoundBinaryType.SUBTRACTION => leftvalue - rightvalue,
@@ -66,32 +66,9 @@ public class Evaluator
             BoundBinaryType.BITSHIFT_RIGHT => leftvalue >> rightvalue,
             _ => null
         };
-        /*
-        if (left is double || right is double)
-        {
-            return expression.op?.BinaryType switch
-            {
-                BoundBinaryType.ADDITION => Convert.ToDouble(left) + Convert.ToDouble(right),
-                BoundBinaryType.SUBTRACTION => Convert.ToDouble(left) - Convert.ToDouble(right),
-                BoundBinaryType.DIVISION => Convert.ToDouble(left) / Convert.ToDouble(right),
-                BoundBinaryType.MULTIPLICATION => Convert.ToDouble(left) * Convert.ToDouble(right),
-                BoundBinaryType.MOD => Convert.ToDouble(left) % Convert.ToDouble(right),
-                _ => null
-            };
-        }
-        return expression.op?.BinaryType switch
-        {
-            BoundBinaryType.ADDITION => (int)left + (int)right,
-            BoundBinaryType.SUBTRACTION => (int)left - (int)right,
-            BoundBinaryType.DIVISION => (int)left / (int)right,
-            BoundBinaryType.MULTIPLICATION => (int)left * (int)right,
-            BoundBinaryType.MOD => (int)left % (int)right,
-            _ => null
-        };
-        */
     }
     private object? EvaluateLiteral(BoundLiteralExpression expression)
     {
-        return expression.value;
+        return expression.Value;
     }
 }

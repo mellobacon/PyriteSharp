@@ -39,7 +39,7 @@ public class EvaluatorTests
     private void EvaluatorCalcuatesCorrectly(string text, object value)
     {
         Ast tree = Ast.Parse(text);
-        Compilation compilation = new Compilation(tree.root);
+        Compilation compilation = new Compilation(tree.Root);
          Assert.Equal(value, compilation.Evaluate());
     }
 }

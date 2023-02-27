@@ -2,21 +2,21 @@
 
 public class BinaryExpression : Expression
 {
-    public Expression left;
-    public Token op;
-    public Expression right;
+    public readonly Expression Left;
+    public readonly Token Op;
+    public readonly Expression Right;
 
     public BinaryExpression(Expression left, Token op, Expression right)
     {
-        this.left = left;
-        this.op = op;
-        this.right = right;
+        Left = left;
+        Op = op;
+        Right = right;
     }
     public override TokenType Type => TokenType.BINARY_EXPRESSION;
     public override IEnumerable<Node> GetChildren()
     {
-        yield return left;
-        yield return op;
-        yield return right;
+        yield return Left;
+        yield return Op;
+        yield return Right;
     }
 }

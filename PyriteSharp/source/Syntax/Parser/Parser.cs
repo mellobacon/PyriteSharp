@@ -13,11 +13,11 @@ public class Parser
         while (true)
         {
             Token token = lexer.Lex();
-            if (token.tokentype is TokenType.WHITESPACE or TokenType.BAD_TOKEN)
+            if (token.Tokentype is TokenType.WHITESPACE or TokenType.BAD_TOKEN)
             {
                 continue;
             }
-            if (token.tokentype == TokenType.EOF_TOKEN) break;
+            if (token.Tokentype == TokenType.EOF_TOKEN) break;
             _tokens.Add(token);
         }
 
@@ -52,7 +52,7 @@ public class Parser
         Expression left = ParseLiteralExpression();
         while (true)
         {
-            int currentprecedence = SyntaxInfo.GetBinaryPrecedence(_current.tokentype);
+            int currentprecedence = SyntaxInfo.GetBinaryPrecedence(_current.Tokentype);
             if (currentprecedence <= precedence)
             {
                 break;
@@ -68,7 +68,7 @@ public class Parser
 
     private Expression ParseLiteralExpression()
     {
-        if (_current.tokentype == TokenType.LEFT_PAREN)
+        if (_current.Tokentype == TokenType.LEFT_PAREN)
         {
             Token leftparen = GetNextToken();
             Expression expression = ParseExpression();
@@ -76,6 +76,6 @@ public class Parser
             return new GroupedExpression(leftparen, expression, rightparen);
         }
         Token number = GetNextToken();
-        return new LiteralExpression(number, number.value);
+        return new LiteralExpression(number, number.Value);
     }
 }
