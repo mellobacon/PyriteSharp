@@ -40,6 +40,31 @@ public class Evaluator
             return null;
         }
 
+        dynamic? leftvalue = left switch
+        {
+            double d => d,
+            float f => f,
+            int i => i,
+            _ => null
+        };
+
+        dynamic? rightvalue = right switch
+        {
+            double d => d,
+            float f => f,
+            int i => i,
+            _ => null
+        };
+        return expression.op?.BinaryType switch
+        {
+            BoundBinaryType.ADDITION => leftvalue + rightvalue,
+            BoundBinaryType.SUBTRACTION => leftvalue - rightvalue,
+            BoundBinaryType.DIVISION => leftvalue / rightvalue,
+            BoundBinaryType.MULTIPLICATION => leftvalue * rightvalue,
+            BoundBinaryType.MOD => leftvalue % rightvalue,
+            _ => null
+        };
+        /*
         if (left is double || right is double)
         {
             return expression.op?.BinaryType switch
@@ -61,6 +86,7 @@ public class Evaluator
             BoundBinaryType.MOD => (int)left % (int)right,
             _ => null
         };
+        */
     }
     private object? EvaluateLiteral(BoundLiteralExpression expression)
     {

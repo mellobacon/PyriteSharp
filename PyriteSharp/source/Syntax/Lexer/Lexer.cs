@@ -22,10 +22,50 @@ public class Lexer
         _current = _position >= _text.Length ? '\0' : _text[_position];
     }
 
+    private bool AttemptNumberConvert(string text)
+    {
+        bool hasdecimal = text.Contains('.');
+        switch (text[^1])
+        {
+            case 'f':
+                if (float.TryParse(text.Remove(text.Length - 1), out float fvalue))
+                {
+                    _value = fvalue;
+                    _tokentype = TokenType.NUMBER;
+                    return true;
+                }
+
+                break;
+            case 'd':
+                if (double.TryParse(text.Remove(text.Length - 1), out double dvalue))
+                {
+                    _value = dvalue;
+                    _tokentype = TokenType.NUMBER;
+                    return true;
+                }
+                break;
+            default:
+                if (int.TryParse(text, out int ivalue) && !hasdecimal)
+                {
+                    _value = ivalue;
+                    _tokentype = TokenType.NUMBER;
+                    return true;
+                }
+                if (double.TryParse(text, out double value))
+                {
+                    _value = value;
+                    _tokentype = TokenType.NUMBER;
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
     private void LexNumber()
     {
-        string temp = "";
-        while (char.IsDigit(_current) || _current is '.' or '_')
+        while (char.IsDigit(_current) || _current is '.' or '_' or 'f' or 'd')
         {
             _currenttext += _current;
             Advance();
@@ -38,22 +78,9 @@ public class Lexer
         }
 
         // mmmm sugar
-        temp = _currenttext.Replace("_", "");
+        var temp = _currenttext.Replace("_", "");
         
-        if (temp.Contains('.'))
-        {
-            if (double.TryParse(temp, out double dvalue))
-            {
-                _value = dvalue;
-                _tokentype = TokenType.NUMBER;
-            }
-        }
-        else if (int.TryParse(temp, out int ivalue))
-        {
-            _value = ivalue;
-            _tokentype = TokenType.NUMBER;
-        }
-        else
+        if (!AttemptNumberConvert(temp))
         {
             _tokentype = TokenType.BAD_TOKEN;
         }
