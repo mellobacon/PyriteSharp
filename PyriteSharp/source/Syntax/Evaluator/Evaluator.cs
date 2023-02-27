@@ -40,15 +40,15 @@ public class Evaluator
             return null;
         }
 
-        if (left is float || right is float)
+        if (left is double || right is double)
         {
             return expression.op?.BinaryType switch
             {
-                BoundBinaryType.ADDITION => Convert.ToSingle(left) + Convert.ToSingle(right),
-                BoundBinaryType.SUBTRACTION => Convert.ToSingle(left) - Convert.ToSingle(right),
-                BoundBinaryType.DIVISION => Convert.ToSingle(left) / Convert.ToSingle(right),
-                BoundBinaryType.MULTIPLICATION => Convert.ToSingle(left) * Convert.ToSingle(right),
-                BoundBinaryType.MOD => Convert.ToSingle(left) % Convert.ToSingle(right),
+                BoundBinaryType.ADDITION => Convert.ToDouble(left) + Convert.ToDouble(right),
+                BoundBinaryType.SUBTRACTION => Convert.ToDouble(left) - Convert.ToDouble(right),
+                BoundBinaryType.DIVISION => Convert.ToDouble(left) / Convert.ToDouble(right),
+                BoundBinaryType.MULTIPLICATION => Convert.ToDouble(left) * Convert.ToDouble(right),
+                BoundBinaryType.MOD => Convert.ToDouble(left) % Convert.ToDouble(right),
                 _ => null
             };
         }
