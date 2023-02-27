@@ -34,6 +34,10 @@ public class EvaluatorTests
             ("50 ^ 7", 53),
             ("false && false", false),
             ("true || false", true),
+            ("5 == 10", false),
+            ("260 == 67.75f", false),
+            ("6 + 10 == 16", true),
+            ("50 | 7 != 3", true)
         };
         foreach ((string text, object value) in evals)
         {

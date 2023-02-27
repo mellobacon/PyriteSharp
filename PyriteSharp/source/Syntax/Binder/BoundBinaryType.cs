@@ -13,5 +13,7 @@ public enum BoundBinaryType
     BITWISE_AND,
     BITWISE_EXCLUSIVE_OR,
     LOGICAL_OR,
-    LOGICAL_AND
+    LOGICAL_AND,
+    LOGICAL_EQUALS,
+    LOGICAL_NOT_EQUALS,
 }

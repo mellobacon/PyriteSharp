@@ -71,6 +71,8 @@ public class Evaluator
             BoundBinaryType.BITWISE_EXCLUSIVE_OR => leftvalue ^ rightvalue,
             BoundBinaryType.LOGICAL_OR => leftvalue || rightvalue,
             BoundBinaryType.LOGICAL_AND => leftvalue && rightvalue,
+            BoundBinaryType.LOGICAL_EQUALS => leftvalue == rightvalue,
+            BoundBinaryType.LOGICAL_NOT_EQUALS => leftvalue != rightvalue,
             _ => null
         };
     }

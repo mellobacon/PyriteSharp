@@ -75,7 +75,29 @@ public class BoundBinaryOperator
         new(BoundBinaryType.BITWISE_EXCLUSIVE_OR, TokenType.HAT, typeof(int), typeof(int), typeof(int)),
         
         new(BoundBinaryType.LOGICAL_OR, TokenType.DOUBLE_PIPE, typeof(bool), typeof(bool), typeof(bool)),
-        new(BoundBinaryType.LOGICAL_AND, TokenType.DOUBLE_AND, typeof(bool), typeof(bool), typeof(bool))
+        new(BoundBinaryType.LOGICAL_AND, TokenType.DOUBLE_AND, typeof(bool), typeof(bool), typeof(bool)),
+        
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(bool), typeof(bool), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(double), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(double), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(double), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(float), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(float), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(float), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(int), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(int), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_EQUALS, TokenType.DOUBLE_EQUAL, typeof(int), typeof(int), typeof(bool)),
+        
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(bool), typeof(bool), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(double), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(double), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(double), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(float), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(float), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(float), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(int), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(int), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_NOT_EQUALS, TokenType.BANG_EQUAL, typeof(int), typeof(int), typeof(bool)),
     };
 
     public static BoundBinaryOperator? GetBinaryOperator(Type left, TokenType op, Type right)

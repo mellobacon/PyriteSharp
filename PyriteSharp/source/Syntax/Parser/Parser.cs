@@ -59,7 +59,7 @@ public class Parser
             }
 
             Token op = GetNextToken();
-            Expression right = ParseBinaryExpression();
+            Expression right = ParseBinaryExpression(currentprecedence);
             left = new BinaryExpression(left, op, right);
         }
 
@@ -75,7 +75,7 @@ public class Parser
             Token rightparen = GetNextToken();
             return new GroupedExpression(leftparen, expression, rightparen);
         }
-        Token number = GetNextToken();
-        return new LiteralExpression(number, number.Value);
+        Token literal = GetNextToken();
+        return new LiteralExpression(literal, literal.Value);
     }
 }

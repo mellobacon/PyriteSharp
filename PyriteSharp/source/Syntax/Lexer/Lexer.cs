@@ -162,7 +162,26 @@ public class Lexer
                 Advance();
                 break;
             case '=':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.DOUBLE_EQUAL;
+                    _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.EQUAL;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '!':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.BANG_EQUAL;
+                    _currenttext += $"{_current}=";
+                    Advance(2);
+                    break;
+                }
+                _tokentype = TokenType.BANG;
                 _currenttext += _current;
                 Advance();
                 break;
