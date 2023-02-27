@@ -47,6 +47,16 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER
         });
+        CheckParse("false", new []
+        {
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.FALSE_KEYWORD
+        });
+        CheckParse("true", new []
+        {
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.TRUE_KEYWORD
+        });
     }
     [Fact]
     private void ParserParsesBinaryExpression()
@@ -69,6 +79,51 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER
         });
+        CheckParse("1 == 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.DOUBLE_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 != 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.BANG_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 << 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.DOUBLE_LESS_THAN,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 >> 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.DOUBLE_MORE_THAN,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 ^ 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.HAT,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
         CheckParse("true && false", new []
         {
             TokenType.BINARY_EXPRESSION,
@@ -77,6 +132,42 @@ public class ParserTests
             TokenType.DOUBLE_AND,
             TokenType.LITERAL_EXPRESSION,
             TokenType.FALSE_KEYWORD
+        });
+        CheckParse("true || false", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.TRUE_KEYWORD,
+            TokenType.DOUBLE_PIPE,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.FALSE_KEYWORD
+        });
+        CheckParse("1 & 0", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.AND,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("1 | 0", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.PIPE,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("1 % 0", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.MOD,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
         });
     }
 
@@ -99,15 +190,41 @@ public class ParserTests
         CheckParse("1 / 2 * 5", new []
         {
             TokenType.BINARY_EXPRESSION,
+            TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
             TokenType.SLASH,
-            TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
             TokenType.STAR,
             TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 / 2 == 5", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
+            TokenType.SLASH,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.DOUBLE_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 / 2 != 5", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.SLASH,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.BANG_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
         });
     }
 
