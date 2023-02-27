@@ -6,6 +6,8 @@ public enum TokenType
     STRING,
     KEYWORD,
     VARIABLE,
+    FALSE_KEYWORD,
+    TRUE_KEYWORD,
     
     PLUS,
     MINUS,

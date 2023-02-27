@@ -70,9 +70,12 @@ public class BoundBinaryOperator
         
         new(BoundBinaryType.BITSHIFT_LEFT, TokenType.DOUBLE_LESS_THAN, typeof(int), typeof(int), typeof(int)),
         new(BoundBinaryType.BITSHIFT_RIGHT, TokenType.DOUBLE_MORE_THAN, typeof(int), typeof(int), typeof(int)),
-        new(BoundBinaryType.LOGICAL_OR, TokenType.PIPE, typeof(int), typeof(int), typeof(int)),
-        new(BoundBinaryType.LOGICAL_AND, TokenType.AND, typeof(int), typeof(int), typeof(int)),
-        new(BoundBinaryType.LOGICAL_EXCLUSIVE_OR, TokenType.HAT, typeof(int), typeof(int), typeof(int))
+        new(BoundBinaryType.BITWISE_OR, TokenType.PIPE, typeof(int), typeof(int), typeof(int)),
+        new(BoundBinaryType.BITWISE_AND, TokenType.AND, typeof(int), typeof(int), typeof(int)),
+        new(BoundBinaryType.BITWISE_EXCLUSIVE_OR, TokenType.HAT, typeof(int), typeof(int), typeof(int)),
+        
+        new(BoundBinaryType.LOGICAL_OR, TokenType.DOUBLE_PIPE, typeof(bool), typeof(bool), typeof(bool)),
+        new(BoundBinaryType.LOGICAL_AND, TokenType.DOUBLE_AND, typeof(bool), typeof(bool), typeof(bool))
     };
 
     public static BoundBinaryOperator? GetBinaryOperator(Type left, TokenType op, Type right)

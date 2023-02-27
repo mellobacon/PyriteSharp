@@ -31,7 +31,9 @@ public class EvaluatorTests
             ("50 | 7", 55),
             ("50 & 7", 2),
             ("248 ^ 28", 228),
-            ("50 ^ 7", 53)
+            ("50 ^ 7", 53),
+            ("false && false", false),
+            ("true || false", true),
         };
         foreach ((string text, object value) in evals)
         {

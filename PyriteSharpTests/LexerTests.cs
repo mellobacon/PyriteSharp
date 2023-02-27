@@ -46,6 +46,8 @@ public class LexerTests
             ("_100", TokenType.BAD_TOKEN),
             ("100_", TokenType.BAD_TOKEN),
             ("0b10010f", TokenType.BAD_TOKEN),
+            ("true", TokenType.TRUE_KEYWORD),
+            ("false", TokenType.FALSE_KEYWORD),
         };
         foreach ((string text, TokenType type) in tokens)
         {

@@ -102,6 +102,19 @@ public class Lexer
         }
     }
 
+    private void LexKeyword()
+    {
+        while (char.IsLetter(_current))
+        {
+            _currenttext += _current;
+            Advance();
+        }
+
+        SyntaxInfo.TryParseKeyword(_currenttext, out TokenType keywordtype, out bool? keywordvalue);
+        _tokentype = keywordtype;
+        _value = keywordvalue;
+    }
+
     private void LexWhiteSpace()
     {
         while (char.IsWhiteSpace(_current))
@@ -220,6 +233,12 @@ public class Lexer
                 if (char.IsDigit(_current) || _current is '.' or '_')
                 {
                     LexNumber();
+                    break;
+                }
+
+                if (char.IsLetter(_current))
+                {
+                    LexKeyword();
                     break;
                 }
 

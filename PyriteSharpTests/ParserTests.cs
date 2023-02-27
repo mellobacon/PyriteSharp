@@ -69,6 +69,15 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER
         });
+        CheckParse("true && false", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.TRUE_KEYWORD,
+            TokenType.DOUBLE_AND,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.FALSE_KEYWORD
+        });
     }
 
     [Fact]

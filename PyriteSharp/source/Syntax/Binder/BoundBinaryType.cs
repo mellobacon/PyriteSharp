@@ -9,7 +9,9 @@ public enum BoundBinaryType
     MOD,
     BITSHIFT_LEFT,
     BITSHIFT_RIGHT,
+    BITWISE_OR,
+    BITWISE_AND,
+    BITWISE_EXCLUSIVE_OR,
     LOGICAL_OR,
-    LOGICAL_AND,
-    LOGICAL_EXCLUSIVE_OR,
+    LOGICAL_AND
 }

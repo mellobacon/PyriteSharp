@@ -45,6 +45,7 @@ public class Evaluator
             double d => d,
             float f => f,
             int i => i,
+            bool b => b,
             _ => null
         };
 
@@ -53,6 +54,7 @@ public class Evaluator
             double d => d,
             float f => f,
             int i => i,
+            bool b => b,
             _ => null
         };
         return expression.Op?.BinaryType switch
@@ -64,9 +66,11 @@ public class Evaluator
             BoundBinaryType.MOD => leftvalue % rightvalue,
             BoundBinaryType.BITSHIFT_LEFT => leftvalue << rightvalue,
             BoundBinaryType.BITSHIFT_RIGHT => leftvalue >> rightvalue,
-            BoundBinaryType.LOGICAL_OR => leftvalue | rightvalue,
-            BoundBinaryType.LOGICAL_AND => leftvalue & rightvalue,
-            BoundBinaryType.LOGICAL_EXCLUSIVE_OR => leftvalue ^ rightvalue,
+            BoundBinaryType.BITWISE_OR => leftvalue | rightvalue,
+            BoundBinaryType.BITWISE_AND => leftvalue & rightvalue,
+            BoundBinaryType.BITWISE_EXCLUSIVE_OR => leftvalue ^ rightvalue,
+            BoundBinaryType.LOGICAL_OR => leftvalue || rightvalue,
+            BoundBinaryType.LOGICAL_AND => leftvalue && rightvalue,
             _ => null
         };
     }
