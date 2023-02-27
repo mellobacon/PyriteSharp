@@ -8,5 +8,8 @@ public enum BoundBinaryType
     MULTIPLICATION,
     MOD,
     BITSHIFT_LEFT,
-    BITSHIFT_RIGHT
+    BITSHIFT_RIGHT,
+    LOGICAL_OR,
+    LOGICAL_AND,
+    LOGICAL_EXCLUSIVE_OR,
 }

@@ -64,6 +64,9 @@ public class Evaluator
             BoundBinaryType.MOD => leftvalue % rightvalue,
             BoundBinaryType.BITSHIFT_LEFT => leftvalue << rightvalue,
             BoundBinaryType.BITSHIFT_RIGHT => leftvalue >> rightvalue,
+            BoundBinaryType.LOGICAL_OR => leftvalue | rightvalue,
+            BoundBinaryType.LOGICAL_AND => leftvalue & rightvalue,
+            BoundBinaryType.LOGICAL_EXCLUSIVE_OR => leftvalue ^ rightvalue,
             _ => null
         };
     }

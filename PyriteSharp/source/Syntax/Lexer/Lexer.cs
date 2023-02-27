@@ -94,7 +94,7 @@ public class Lexer
         }
 
         // mmmm sugar
-        var temp = _currenttext.Replace("_", "");
+        string temp = _currenttext.Replace("_", "");
         
         if (!AttemptNumberConvert(temp))
         {
@@ -174,6 +174,35 @@ public class Lexer
                     break;
                 }
                 _tokentype = TokenType.LESS_THAN;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '|':
+                if (Peek() == '|')
+                {
+                    _tokentype = TokenType.DOUBLE_PIPE;
+                    _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
+                _tokentype = TokenType.PIPE;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '&':
+                if (Peek() == '&')
+                {
+                    _tokentype = TokenType.DOUBLE_AND;
+                    _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
+                _tokentype = TokenType.AND;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '^':
+                _tokentype = TokenType.HAT;
                 _currenttext += _current;
                 Advance();
                 break;
