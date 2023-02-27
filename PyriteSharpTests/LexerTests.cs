@@ -13,6 +13,8 @@ public class LexerTests
         {
             ("1", TokenType.NUMBER),
             ("100", TokenType.NUMBER),
+            ("1_0_0", TokenType.NUMBER),
+            ("1_0___0", TokenType.NUMBER),
             ("1.00", TokenType.NUMBER),
             ("10.0", TokenType.NUMBER),
             (".100", TokenType.NUMBER),
@@ -27,6 +29,8 @@ public class LexerTests
             ("1.0.0", TokenType.BAD_TOKEN),
             ("..100", TokenType.BAD_TOKEN),
             ("1.", TokenType.BAD_TOKEN),
+            ("_100", TokenType.BAD_TOKEN),
+            ("100_", TokenType.BAD_TOKEN),
         };
         foreach ((string text, TokenType type) in tokens)
         {

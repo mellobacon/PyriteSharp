@@ -24,21 +24,31 @@ public class Lexer
 
     private void LexNumber()
     {
-        while (char.IsDigit(_current) || _current == '.')
+        string temp = "";
+        while (char.IsDigit(_current) || _current is '.' or '_')
         {
             _currenttext += _current;
             Advance();
         }
 
-        if (_currenttext.Contains('.') && !_currenttext.EndsWith('.'))
+        if (_currenttext[0] == '_' || _currenttext[^1] == '.' || _currenttext[^1] == '_')
         {
-            if (float.TryParse(_currenttext, out float fvalue))
+            _tokentype = TokenType.BAD_TOKEN;
+            return;
+        }
+
+        // mmmm sugar
+        temp = _currenttext.Replace("_", "");
+        
+        if (temp.Contains('.'))
+        {
+            if (double.TryParse(temp, out double dvalue))
             {
-                _value = fvalue;
+                _value = dvalue;
                 _tokentype = TokenType.NUMBER;
             }
         }
-        else if (int.TryParse(_currenttext, out int ivalue))
+        else if (int.TryParse(temp, out int ivalue))
         {
             _value = ivalue;
             _tokentype = TokenType.NUMBER;
@@ -111,7 +121,7 @@ public class Lexer
                 Advance();
                 break;
             default:
-                if (char.IsDigit(_current) || _current == '.')
+                if (char.IsDigit(_current) || _current is '.' or '_')
                 {
                     LexNumber();
                     break;
