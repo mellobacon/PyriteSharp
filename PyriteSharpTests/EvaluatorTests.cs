@@ -36,6 +36,7 @@ public class EvaluatorTests
             ("true || false", true),
             ("5 == 10", false),
             ("260 == 67.75f", false),
+            ("1.0f == 1.0f", true),
             ("6 + 10 == 16", true),
             ("50 | 7 != 3", true)
         };
