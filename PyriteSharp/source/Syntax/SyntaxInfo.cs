@@ -16,6 +16,8 @@ public static class SyntaxInfo
             TokenType.MOD => 6,
             TokenType.PLUS => 5,
             TokenType.MINUS => 5,
+            TokenType.LESS_THAN => 4,
+            TokenType.MORE_THAN => 4,
             TokenType.DOUBLE_EQUAL => 4,
             TokenType.BANG_EQUAL => 3,
             TokenType.DOUBLE_AND => 2,
@@ -38,7 +40,7 @@ public static class SyntaxInfo
                 value = true;
                 break;
             default:
-                type = TokenType.BAD_TOKEN;
+                type = TokenType.VARIABLE;
                 break;
         }
     }

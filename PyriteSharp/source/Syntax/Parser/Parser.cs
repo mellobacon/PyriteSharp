@@ -36,6 +36,12 @@ public class Parser
         return current;
     }
 
+    private Token Peek(int offset = 1)
+    {
+        int index = _position + offset;
+        return index >= _tokens.Count ? _tokens[^1] : _tokens[index];
+    }
+
     public Ast Parse()
     {
         Expression expression = ParseExpression();
@@ -44,6 +50,19 @@ public class Parser
 
     private Expression ParseExpression()
     {
+        return ParseAssignmentExpression();
+    }
+
+    private Expression ParseAssignmentExpression()
+    {
+        if (_current.Tokentype == TokenType.VARIABLE && Peek().Tokentype == TokenType.EQUAL)
+        {
+            Token variable = GetNextToken();
+            Token equals = GetNextToken();
+            Expression expression = ParseExpression();
+            return new AssignmentExpression(variable, equals, expression);
+        }
+
         return ParseBinaryExpression();
     }
 

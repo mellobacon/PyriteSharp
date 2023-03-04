@@ -38,7 +38,11 @@ public class EvaluatorTests
             ("260 == 67.75f", false),
             ("1.0f == 1.0f", true),
             ("6 + 10 == 16", true),
-            ("50 | 7 != 3", true)
+            ("50 | 7 != 3", true),
+            ("x = 5", 5),
+            ("var = false", false),
+            ("5 > 10", false),
+            ("6 < 220", true)
         };
         foreach ((string text, object value) in evals)
         {

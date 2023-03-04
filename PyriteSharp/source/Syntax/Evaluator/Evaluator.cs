@@ -4,12 +4,14 @@ namespace PyriteSharp.source.Syntax.Evaluator;
 
 public class Evaluator
 {
-    public object? value;
+    private readonly Dictionary<string, object?> _variables;
+    private object? value;
     private readonly BoundExpression _root;
 
-    public Evaluator(BoundExpression expression)
+    public Evaluator(BoundExpression expression, Dictionary<string, object?> variables)
     {
         _root = expression;
+        _variables = variables;
     }
 
     public object? Evaluate()
@@ -22,10 +24,24 @@ public class Evaluator
     {
         switch (expression.BoundType)
         {
+            case BoundType.ASSIGNMENT:
+                return EvaluateAssignmentExpression((BoundAssignmentExpression)expression);
             case BoundType.BINARY:
                 return EvaluateBinaryExpression((BoundBinaryExpression)expression);
             case BoundType.LITERAL:
                 return EvaluateLiteral((BoundLiteralExpression)expression);
+        }
+
+        return null;
+    }
+
+    private object? EvaluateAssignmentExpression(BoundAssignmentExpression expression)
+    {
+        if (_variables[expression.Variable.Name] == null)
+        {
+            object? v = EvaluateExpression(expression.Expression);
+            _variables[expression.Variable.Name] = v;
+            return v;
         }
 
         return null;
@@ -73,6 +89,8 @@ public class Evaluator
             BoundBinaryType.LOGICAL_AND => leftvalue && rightvalue,
             BoundBinaryType.LOGICAL_EQUALS => leftvalue == rightvalue,
             BoundBinaryType.LOGICAL_NOT_EQUALS => leftvalue != rightvalue,
+            BoundBinaryType.LESS_THAN => leftvalue < rightvalue,
+            BoundBinaryType.MORE_THAN => leftvalue > rightvalue,
             _ => null
         };
     }

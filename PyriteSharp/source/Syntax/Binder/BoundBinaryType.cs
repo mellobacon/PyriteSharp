@@ -16,4 +16,6 @@ public enum BoundBinaryType
     LOGICAL_AND,
     LOGICAL_EQUALS,
     LOGICAL_NOT_EQUALS,
+    LESS_THAN,
+    MORE_THAN
 }

@@ -169,6 +169,24 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
         });
+        CheckParse("1 > 0", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.MORE_THAN,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("1 < 0", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.LESS_THAN,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
     }
 
     [Fact]
@@ -253,6 +271,39 @@ public class ParserTests
             TokenType.NUMBER,
             TokenType.RIGHT_PAREN,
             TokenType.STAR,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+    }
+
+    [Fact]
+    private void ParserParsesAssignments()
+    {
+        CheckParse("x = 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("y = 1 + 2 * 5 == 5", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.EQUAL,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.PLUS,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.STAR,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.DOUBLE_EQUAL,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
         });
