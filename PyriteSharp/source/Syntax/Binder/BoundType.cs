@@ -3,5 +3,6 @@
 public enum BoundType
 {
     LITERAL,
-    BINARY
+    BINARY,
+    ASSIGNMENT,
 }
