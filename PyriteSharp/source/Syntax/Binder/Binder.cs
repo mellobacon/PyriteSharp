@@ -28,7 +28,7 @@ public class Binder
         
         Variables.Add(variable.Name, null);
         Token op = expression.Op;
-        return new BoundAssignmentExpression(variable, op, e);
+        return new BoundAssignmentExpression(variable, op, e, expression.HasCompound);
     }
 
     private BoundExpression BindGroupedExpression(GroupedExpression expression)

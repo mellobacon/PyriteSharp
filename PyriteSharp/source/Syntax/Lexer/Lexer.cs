@@ -137,26 +137,61 @@ public class Lexer
                 _tokentype = TokenType.EOF_TOKEN;
                 break;
             case '+':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.PLUS_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.PLUS;
                 _currenttext += _current;
                 Advance();
                 break;
             case '-':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.MINUS_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.MINUS;
                 _currenttext += _current;
                 Advance();
                 break;
             case '/':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.SLASH_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.SLASH;
                 _currenttext += _current;
                 Advance();
                 break;
             case '*':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.STAR_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.STAR;
                 _currenttext += _current;
                 Advance();
                 break;
             case '%':
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.MOD_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.MOD;
                 _currenttext += _current;
                 Advance();
@@ -177,7 +212,7 @@ public class Lexer
                 if (Peek() == '=')
                 {
                     _tokentype = TokenType.BANG_EQUAL;
-                    _currenttext += $"{_current}=";
+                    _currenttext += $"{_current}{Peek()}";
                     Advance(2);
                     break;
                 }
@@ -193,6 +228,13 @@ public class Lexer
                     Advance(2);
                     break;
                 }
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.MORE_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
+                    Advance(2);
+                    break;
+                }
                 _tokentype = TokenType.MORE_THAN;
                 _currenttext += _current;
                 Advance();
@@ -202,6 +244,14 @@ public class Lexer
                 {
                     _tokentype = TokenType.DOUBLE_LESS_THAN;
                     _currenttext += $"{_current}{_current}";
+                    Advance(2);
+                    break;
+                }
+
+                if (Peek() == '=')
+                {
+                    _tokentype = TokenType.LESS_EQUAL;
+                    _currenttext += $"{_current}{Peek()}";
                     Advance(2);
                     break;
                 }

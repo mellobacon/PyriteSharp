@@ -187,6 +187,24 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
         });
+        CheckParse("1 >= 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.MORE_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
+        CheckParse("1 <= 2", new []
+        {
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.LESS_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER
+        });
     }
 
     [Fact]
@@ -304,6 +322,46 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
             TokenType.DOUBLE_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("x += 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.PLUS_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("x -= 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.MINUS_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("x *= 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.STAR_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("x /= 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.SLASH_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+        });
+        CheckParse("x %= 1", new []
+        {
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.MOD_EQUAL,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
         });

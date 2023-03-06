@@ -118,6 +118,26 @@ public class BoundBinaryOperator
         new(BoundBinaryType.MORE_THAN, TokenType.MORE_THAN, typeof(int), typeof(float), typeof(bool)),
         new(BoundBinaryType.MORE_THAN, TokenType.MORE_THAN, typeof(int), typeof(double), typeof(bool)),
         new(BoundBinaryType.MORE_THAN, TokenType.MORE_THAN, typeof(int), typeof(int), typeof(bool)),
+        
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(double), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(double), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(double), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(float), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(float), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(float), typeof(int), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(int), typeof(float), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(int), typeof(double), typeof(bool)),
+        new(BoundBinaryType.LESS_EQUAL, TokenType.LESS_EQUAL, typeof(int), typeof(int), typeof(bool)),
+        
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(double), typeof(double), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(double), typeof(float), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(double), typeof(int), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(float), typeof(float), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(float), typeof(double), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(float), typeof(int), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(int), typeof(float), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(int), typeof(double), typeof(bool)),
+        new(BoundBinaryType.MORE_EQUAL, TokenType.MORE_EQUAL, typeof(int), typeof(int), typeof(bool)),
     };
 
     public static BoundBinaryOperator? GetBinaryOperator(Type left, TokenType op, Type right)

@@ -40,8 +40,48 @@ public class Evaluator
         if (_variables[expression.Variable.Name] == null)
         {
             object? v = EvaluateExpression(expression.Expression);
-            _variables[expression.Variable.Name] = v;
-            return v;
+
+            dynamic? variableValue = v switch
+            {
+                double d => d,
+                float f => f,
+                int i => i,
+                bool b => b,
+                _ => v
+            };
+
+            dynamic? variable = _variables[expression.Variable.Name] switch
+            {
+                double d => d,
+                float f => f,
+                int i => i,
+                bool b => b,
+                _ => v
+            };
+            if (expression.IsCompound)
+            {
+                switch (expression.Op.Tokentype)
+                {
+                    case TokenType.PLUS_EQUAL:
+                        variable += variableValue;
+                        break;
+                    case TokenType.MINUS_EQUAL:
+                        variable -= variableValue;
+                        break;
+                    case TokenType.SLASH_EQUAL:
+                        variable /= variableValue;
+                        break;
+                    case TokenType.STAR_EQUAL:
+                        variable *= variableValue;
+                        break;
+                    case TokenType.MOD_EQUAL:
+                        variable %= variableValue;
+                        break;
+                }
+                
+            }
+            _variables[expression.Variable.Name] = variable;
+            return _variables[expression.Variable.Name];
         }
 
         return null;
@@ -91,6 +131,8 @@ public class Evaluator
             BoundBinaryType.LOGICAL_NOT_EQUALS => leftvalue != rightvalue,
             BoundBinaryType.LESS_THAN => leftvalue < rightvalue,
             BoundBinaryType.MORE_THAN => leftvalue > rightvalue,
+            BoundBinaryType.MORE_EQUAL => leftvalue >= rightvalue,
+            BoundBinaryType.LESS_EQUAL => leftvalue <= rightvalue,
             _ => null
         };
     }

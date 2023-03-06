@@ -40,9 +40,16 @@ public class EvaluatorTests
             ("6 + 10 == 16", true),
             ("50 | 7 != 3", true),
             ("x = 5", 5),
+            ("x += 5", 10),
+            ("x -= 5", 0),
+            ("x *= 5", 25),
+            ("x /= 5", 1),
+            ("x %= 5", 0),
             ("var = false", false),
             ("5 > 10", false),
-            ("6 < 220", true)
+            ("6 < 220", true),
+            ("5 >= 10", false),
+            ("5 <= 5", true)
         };
         foreach ((string text, object value) in evals)
         {

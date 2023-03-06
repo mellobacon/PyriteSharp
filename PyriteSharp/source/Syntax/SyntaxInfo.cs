@@ -18,6 +18,8 @@ public static class SyntaxInfo
             TokenType.MINUS => 5,
             TokenType.LESS_THAN => 4,
             TokenType.MORE_THAN => 4,
+            TokenType.MORE_EQUAL => 4,
+            TokenType.LESS_EQUAL => 4,
             TokenType.DOUBLE_EQUAL => 4,
             TokenType.BANG_EQUAL => 3,
             TokenType.DOUBLE_AND => 2,

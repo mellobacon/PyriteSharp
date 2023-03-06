@@ -55,12 +55,14 @@ public class Parser
 
     private Expression ParseAssignmentExpression()
     {
-        if (_current.Tokentype == TokenType.VARIABLE && Peek().Tokentype == TokenType.EQUAL)
+        bool hascompound = Peek().Tokentype is TokenType.PLUS_EQUAL or TokenType.MINUS_EQUAL or 
+            TokenType.STAR_EQUAL or TokenType.SLASH_EQUAL or TokenType.MOD_EQUAL;
+        if (_current.Tokentype == TokenType.VARIABLE && (Peek().Tokentype is TokenType.EQUAL || hascompound))
         {
             Token variable = GetNextToken();
             Token equals = GetNextToken();
             Expression expression = ParseExpression();
-            return new AssignmentExpression(variable, equals, expression);
+            return new AssignmentExpression(variable, equals, expression, hascompound);
         }
 
         return ParseBinaryExpression();

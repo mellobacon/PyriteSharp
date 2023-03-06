@@ -5,11 +5,14 @@ public class AssignmentExpression : Expression
     public Token Variable;
     public Token Op;
     public Expression Expression;
-    public AssignmentExpression(Token v, Token op, Expression expression)
+
+    public bool HasCompound;
+    public AssignmentExpression(Token v, Token op, Expression expression, bool compound = false)
     {
         Variable = v;
         Op = op;
         Expression = expression;
+        HasCompound = compound;
     }
 
     public override TokenType Type => TokenType.ASSIGNMENT_EXPRESSION;
