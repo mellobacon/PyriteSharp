@@ -57,6 +57,11 @@ public class ParserTests
             TokenType.LITERAL_EXPRESSION,
             TokenType.TRUE_KEYWORD
         });
+        CheckParse("\"thing\"", new []
+        {
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.STRING
+        });
     }
     [Fact]
     private void ParserParsesBinaryExpression()

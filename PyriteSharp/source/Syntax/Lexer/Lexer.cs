@@ -115,6 +115,24 @@ public class Lexer
         _value = keywordvalue;
     }
 
+    private void LexString()
+    {
+        // consume first quotation mark
+        _currenttext += _current;
+        Advance();
+        while (_current != '"')
+        {
+            _currenttext += _current;
+            Advance();
+        }
+        // consume last quotation mark
+        _currenttext += _current;
+        Advance();
+        
+        _tokentype = TokenType.STRING;
+        _value = _currenttext;
+    }
+
     private void LexWhiteSpace()
     {
         while (char.IsWhiteSpace(_current))
@@ -308,6 +326,11 @@ public class Lexer
                 if (char.IsLetter(_current))
                 {
                     LexKeyword();
+                    break;
+                }
+                if (_current == '"')
+                {
+                    LexString();
                     break;
                 }
 

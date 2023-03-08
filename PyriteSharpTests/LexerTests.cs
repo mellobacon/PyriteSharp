@@ -61,6 +61,7 @@ public class LexerTests
             ("true", TokenType.TRUE_KEYWORD),
             ("false", TokenType.FALSE_KEYWORD),
             ("var", TokenType.VARIABLE),
+            ("\"thing\"", TokenType.STRING)
         };
         foreach ((string text, TokenType type) in tokens)
         {

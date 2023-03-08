@@ -49,7 +49,10 @@ public class EvaluatorTests
             ("5 > 10", false),
             ("6 < 220", true),
             ("5 >= 10", false),
-            ("5 <= 5", true)
+            ("5 <= 5", true),
+            ("\"thing\"", "thing"),
+            ("\"thing1\" + \"thing2\"", "thing1thing2"),
+            ("\"thing1\" * 2", "thing1thing1"),
         };
         foreach ((string text, object value) in evals)
         {

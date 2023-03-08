@@ -47,6 +47,7 @@ public class Evaluator
                 float f => f,
                 int i => i,
                 bool b => b,
+                string s => s,
                 _ => v
             };
 
@@ -56,6 +57,7 @@ public class Evaluator
                 float f => f,
                 int i => i,
                 bool b => b,
+                string s => s,
                 _ => v
             };
             if (expression.IsCompound)
@@ -102,6 +104,7 @@ public class Evaluator
             float f => f,
             int i => i,
             bool b => b,
+            string s => s,
             _ => null
         };
 
@@ -111,14 +114,27 @@ public class Evaluator
             float f => f,
             int i => i,
             bool b => b,
+            string s => s,
             _ => null
         };
+
+        string MultiplyString(string x, int y)
+        {
+            string v = x;
+            for (int i = 1; i < y; i++)
+            {
+                v += x;
+            }
+
+            return v;
+        }
         return expression.Op?.BinaryType switch
         {
             BoundBinaryType.ADDITION => leftvalue + rightvalue,
             BoundBinaryType.SUBTRACTION => leftvalue - rightvalue,
             BoundBinaryType.DIVISION => leftvalue / rightvalue,
             BoundBinaryType.MULTIPLICATION => leftvalue * rightvalue,
+            BoundBinaryType.STRING_MULTIPLICATION => MultiplyString(leftvalue, rightvalue),
             BoundBinaryType.MOD => leftvalue % rightvalue,
             BoundBinaryType.BITSHIFT_LEFT => leftvalue << rightvalue,
             BoundBinaryType.BITSHIFT_RIGHT => leftvalue >> rightvalue,
@@ -138,6 +154,14 @@ public class Evaluator
     }
     private object? EvaluateLiteral(BoundLiteralExpression expression)
     {
-        return expression.Value;
+        object? v = expression.Value;
+        
+        // evaluate with no quotations
+        if (v is string s)
+        {
+            v = s.Replace("\"", "");
+        }
+
+        return v;
     }
 }

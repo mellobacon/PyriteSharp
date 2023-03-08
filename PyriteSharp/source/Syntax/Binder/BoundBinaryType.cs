@@ -19,5 +19,6 @@ public enum BoundBinaryType
     LESS_THAN,
     MORE_THAN,
     LESS_EQUAL,
-    MORE_EQUAL
+    MORE_EQUAL,
+    STRING_MULTIPLICATION,
 }

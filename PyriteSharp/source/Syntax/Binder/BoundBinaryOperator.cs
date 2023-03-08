@@ -27,6 +27,7 @@ public class BoundBinaryOperator
         new(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(float), typeof(float), typeof(float)),
         new(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(double), typeof(float), typeof(double)),
         new(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(float), typeof(double), typeof(double)),
+        new(BoundBinaryType.ADDITION, TokenType.PLUS, typeof(string), typeof(string), typeof(string)),
         
         new(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(int), typeof(int), typeof(int)),
         new(BoundBinaryType.SUBTRACTION, TokenType.MINUS, typeof(double), typeof(double), typeof(double)),
@@ -47,6 +48,8 @@ public class BoundBinaryOperator
         new(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(int), typeof(float), typeof(float)),
         new(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(float), typeof(double), typeof(double)),
         new(BoundBinaryType.MULTIPLICATION, TokenType.STAR, typeof(double), typeof(float), typeof(double)),
+        
+        new(BoundBinaryType.STRING_MULTIPLICATION, TokenType.STAR, typeof(string), typeof(int), typeof(string)),
         
         new(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(int), typeof(int), typeof(int)),
         new(BoundBinaryType.DIVISION, TokenType.SLASH, typeof(double), typeof(double), typeof(double)),
