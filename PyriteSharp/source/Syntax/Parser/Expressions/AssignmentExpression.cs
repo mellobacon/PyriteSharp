@@ -2,11 +2,11 @@
 
 public class AssignmentExpression : Expression
 {
-    public Token Variable;
-    public Token Op;
-    public Expression Expression;
+    public readonly Token Variable;
+    public readonly Token Op;
+    public readonly Expression Expression;
 
-    public bool HasCompound;
+    public readonly bool HasCompound;
     public AssignmentExpression(Token v, Token op, Expression expression, bool compound = false)
     {
         Variable = v;

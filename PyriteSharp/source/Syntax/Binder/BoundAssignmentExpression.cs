@@ -3,10 +3,10 @@
 public class BoundAssignmentExpression : BoundExpression
 {
     public Variable Variable;
-    public Token Op;
-    public BoundExpression Expression;
+    public readonly Token Op;
+    public readonly BoundExpression Expression;
 
-    public bool IsCompound;
+    public readonly bool IsCompound;
     public BoundAssignmentExpression(Variable v, Token op, BoundExpression expression, bool isCompound)
     {
         Variable = v;

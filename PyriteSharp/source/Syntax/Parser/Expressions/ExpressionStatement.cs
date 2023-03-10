@@ -2,15 +2,15 @@
 
 public class ExpressionStatement : Statement
 {
-    public Expression Expression;
+    public readonly Expression Statement;
     public ExpressionStatement(Expression e)
     {
-        Expression = e;
+        Statement = e;
     }
 
     public override TokenType Type => TokenType.EXPRESSION_STATEMENT;
     public override IEnumerable<Node> GetChildren()
     {
-        yield return Expression;
+        yield return Statement;
     }
 }

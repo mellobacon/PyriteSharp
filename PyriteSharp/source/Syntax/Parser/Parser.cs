@@ -53,18 +53,18 @@ public class Parser
         if (_current.Tokentype == TokenType.LEFT_BRACKET)
         {
             Token left = GetNextToken();
-            List<Statement> expressions = new List<Statement>();
+            List<Statement> statements = new List<Statement>();
             while (_current.Tokentype != TokenType.RIGHT_BRACKET)
             {
-                Statement expression = ParseStatement();
-                expressions.Add(expression);
+                Statement statement = ParseStatement();
+                statements.Add(statement);
             }
             
             Token right = GetNextToken();
-            return new BlockStatement(left, expressions, right);
+            return new BlockStatement(left, statements, right);
         }
-        Expression e = ParseExpression();
-        return new ExpressionStatement(e);
+        Expression expression = ParseExpression();
+        return new ExpressionStatement(expression);
     }
     
     private Expression ParseExpression()

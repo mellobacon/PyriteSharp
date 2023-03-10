@@ -6,10 +6,9 @@ using Xunit;
 
 namespace PyriteSharpTests;
 
-class ParseTree
+internal class ParseTree
 {
-    private readonly List<Node> _tree =  new();
-    public List<Node> Tree => _tree;
+    public List<Node> Tree { get; } = new();
 
     public ParseTree(Node n)
     {
@@ -18,7 +17,7 @@ class ParseTree
 
     private void CreateTree(Node node)
     {
-        _tree.Add(node);
+        Tree.Add(node);
         foreach (Node child in node.GetChildren())
         {
             CreateTree(child);
@@ -28,7 +27,7 @@ class ParseTree
 
 public class ParserTests
 {
-    private void CheckParse(string text, IReadOnlyList<TokenType> expectedtree)
+    private static void CheckParse(string text, IReadOnlyList<TokenType> expectedtree)
     {
         Ast tree = Ast.Parse(text);
         Statement expression = tree.Root;

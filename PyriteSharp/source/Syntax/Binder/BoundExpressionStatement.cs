@@ -4,7 +4,7 @@ namespace PyriteSharp.source.Syntax.Binder;
 
 public class BoundExpressionStatement : BoundStatement
 {
-    public BoundExpression Expression;
+    public readonly BoundExpression Expression;
     public BoundExpressionStatement(BoundExpression expression)
     {
         Expression = expression;

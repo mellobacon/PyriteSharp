@@ -2,7 +2,4 @@
 
 namespace PyriteSharp.source.Syntax.Binder;
 
-public abstract class BoundStatement : BoundNode
-{
-    
-}
+public abstract class BoundStatement : BoundNode { }

@@ -41,7 +41,7 @@ public class Binder
     }
     private BoundStatement BindExpressionStatement(ExpressionStatement expression)
     {
-        var e = BindExpression(expression.Expression);
+        var e = BindExpression(expression.Statement);
         return new BoundExpressionStatement(e);
     }
     
@@ -84,7 +84,7 @@ public class Binder
         return new BoundBinaryExpression(left, op, right);
     }
 
-    private BoundLiteralExpression BindLiteralExpression(LiteralExpression expression)
+    private static BoundLiteralExpression BindLiteralExpression(LiteralExpression expression)
     {
         object value = expression.Value ?? 0;
         return new BoundLiteralExpression(value);

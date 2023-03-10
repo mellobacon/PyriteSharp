@@ -2,24 +2,24 @@
 
 public class BlockStatement : Statement
 {
-    public Token LeftBracket;
-    public List<Statement> Expression;
-    public Token RightBracket;
+    private readonly Token _leftBracket;
+    public readonly List<Statement> Expression;
+    private readonly Token _rightBracket;
     public BlockStatement(Token left, List<Statement> e, Token right)
     {
-        LeftBracket = left;
+        _leftBracket = left;
         Expression = e;
-        RightBracket = right;
+        _rightBracket = right;
     }
 
     public override TokenType Type => TokenType.STATEMENT;
     public override IEnumerable<Node> GetChildren()
     {
-        yield return LeftBracket;
+        yield return _leftBracket;
         foreach (var e in Expression)
         {
             yield return e;
         }
-        yield return RightBracket;
+        yield return _rightBracket;
     }
 }

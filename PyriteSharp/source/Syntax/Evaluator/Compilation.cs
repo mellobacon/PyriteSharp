@@ -14,7 +14,7 @@ public class Compilation
     public object? Evaluate()
     {
         GlobalScope scope = Binder.Binder.BindScope(_root);
-        Evaluator evaluator = new Evaluator(scope.Expression, scope.Variables);
+        Evaluator evaluator = new Evaluator(scope.Statement, scope.Variables);
         return evaluator.Evaluate();
     }
 }
