@@ -31,7 +31,7 @@ public class ParserTests
     private void CheckParse(string text, IReadOnlyList<TokenType> expectedtree)
     {
         Ast tree = Ast.Parse(text);
-        Expression expression = tree.Root;
+        Statement expression = tree.Root;
         ParseTree t = new ParseTree(expression);
         for (int i = 0; i < t.Tree.Count; i++)
         {
@@ -44,21 +44,25 @@ public class ParserTests
     {
         CheckParse("100", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER
         });
         CheckParse("false", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.LITERAL_EXPRESSION,
             TokenType.FALSE_KEYWORD
         });
         CheckParse("true", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.LITERAL_EXPRESSION,
             TokenType.TRUE_KEYWORD
         });
         CheckParse("\"thing\"", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.LITERAL_EXPRESSION,
             TokenType.STRING
         });
@@ -68,6 +72,7 @@ public class ParserTests
     {
         CheckParse("1 + 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -77,6 +82,7 @@ public class ParserTests
         });
         CheckParse("1 - 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -86,6 +92,7 @@ public class ParserTests
         });
         CheckParse("1 == 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -95,6 +102,7 @@ public class ParserTests
         });
         CheckParse("1 != 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -104,6 +112,7 @@ public class ParserTests
         });
         CheckParse("1 << 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -113,6 +122,7 @@ public class ParserTests
         });
         CheckParse("1 >> 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -122,6 +132,7 @@ public class ParserTests
         });
         CheckParse("1 ^ 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -131,6 +142,7 @@ public class ParserTests
         });
         CheckParse("true && false", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.TRUE_KEYWORD,
@@ -140,6 +152,7 @@ public class ParserTests
         });
         CheckParse("true || false", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.TRUE_KEYWORD,
@@ -149,6 +162,7 @@ public class ParserTests
         });
         CheckParse("1 & 0", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -158,6 +172,7 @@ public class ParserTests
         });
         CheckParse("1 | 0", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -167,6 +182,7 @@ public class ParserTests
         });
         CheckParse("1 % 0", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -176,6 +192,7 @@ public class ParserTests
         });
         CheckParse("1 > 0", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -185,6 +202,7 @@ public class ParserTests
         });
         CheckParse("1 < 0", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -194,6 +212,7 @@ public class ParserTests
         });
         CheckParse("1 >= 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -203,6 +222,7 @@ public class ParserTests
         });
         CheckParse("1 <= 2", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -217,6 +237,7 @@ public class ParserTests
     {
         CheckParse("1 + 2 * 5", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
@@ -230,6 +251,7 @@ public class ParserTests
         });
         CheckParse("1 / 2 * 5", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
@@ -243,6 +265,7 @@ public class ParserTests
         });
         CheckParse("1 / 2 == 5", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
@@ -256,6 +279,7 @@ public class ParserTests
         });
         CheckParse("1 / 2 != 5", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.BINARY_EXPRESSION,
             TokenType.LITERAL_EXPRESSION,
@@ -274,6 +298,7 @@ public class ParserTests
     {
         CheckParse("(1)", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.GROUPED_EXPRESSION,
             TokenType.LEFT_PAREN,
             TokenType.LITERAL_EXPRESSION,
@@ -283,6 +308,7 @@ public class ParserTests
         
         CheckParse("(1 + 2) * 3", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.BINARY_EXPRESSION,
             TokenType.GROUPED_EXPRESSION,
             TokenType.LEFT_PAREN,
@@ -304,6 +330,7 @@ public class ParserTests
     {
         CheckParse("x = 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.EQUAL,
@@ -312,6 +339,7 @@ public class ParserTests
         });
         CheckParse("y = 1 + 2 * 5 == 5", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.EQUAL,
@@ -332,6 +360,7 @@ public class ParserTests
         });
         CheckParse("x += 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.PLUS_EQUAL,
@@ -340,6 +369,7 @@ public class ParserTests
         });
         CheckParse("x -= 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.MINUS_EQUAL,
@@ -348,6 +378,7 @@ public class ParserTests
         });
         CheckParse("x *= 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.STAR_EQUAL,
@@ -356,6 +387,7 @@ public class ParserTests
         });
         CheckParse("x /= 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.SLASH_EQUAL,
@@ -364,11 +396,85 @@ public class ParserTests
         });
         CheckParse("x %= 1", new []
         {
+            TokenType.EXPRESSION_STATEMENT,
             TokenType.ASSIGNMENT_EXPRESSION,
             TokenType.VARIABLE,
             TokenType.MOD_EQUAL,
             TokenType.LITERAL_EXPRESSION,
             TokenType.NUMBER,
+        });
+    }
+
+    [Fact]
+    private void ParserParsesStatements()
+    {
+        CheckParse("{ }", new []
+        {
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.RIGHT_BRACKET,
+        });
+        CheckParse("{ 7 }", new []
+        {
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.EXPRESSION_STATEMENT,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_BRACKET,
+        });
+        CheckParse("{ (1 + 2) * 3 }", new []
+        {
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.EXPRESSION_STATEMENT,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.GROUPED_EXPRESSION,
+            TokenType.LEFT_PAREN,
+            TokenType.BINARY_EXPRESSION,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.PLUS,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_PAREN,
+            TokenType.STAR,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_BRACKET,
+        });
+        CheckParse("{ x = 1 }", new []
+        {
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.EXPRESSION_STATEMENT,
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_BRACKET,
+        });
+        CheckParse("{ x = 1 { x += 2 } }", new []
+        {
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.EXPRESSION_STATEMENT,
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.STATEMENT,
+            TokenType.LEFT_BRACKET,
+            TokenType.EXPRESSION_STATEMENT,
+            TokenType.ASSIGNMENT_EXPRESSION,
+            TokenType.VARIABLE,
+            TokenType.PLUS_EQUAL,
+            TokenType.LITERAL_EXPRESSION,
+            TokenType.NUMBER,
+            TokenType.RIGHT_BRACKET,
+            TokenType.RIGHT_BRACKET,
         });
     }
 }

@@ -5,4 +5,7 @@ public enum BoundType
     LITERAL,
     BINARY,
     ASSIGNMENT,
+    
+    STATEMENT,
+    EXPRESSION_STATEMENT,
 }

@@ -5,17 +5,16 @@ namespace PyriteSharp.source.Syntax.Evaluator;
 
 public class Compilation
 {
-    private readonly Expression _root;
-    public Compilation(Expression expression)
+    private readonly Statement _root;
+    public Compilation(Statement expression)
     {
         _root = expression;
     }
 
     public object? Evaluate()
     {
-        Binder.Binder binder = new Binder.Binder();
-        BoundExpression expression = binder.BindExpression(_root);
-        Evaluator evaluator = new Evaluator(expression, binder.Variables);
+        GlobalScope scope = Binder.Binder.BindScope(_root);
+        Evaluator evaluator = new Evaluator(scope.Expression, scope.Variables);
         return evaluator.Evaluate();
     }
 }

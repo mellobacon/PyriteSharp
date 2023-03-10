@@ -4,8 +4,8 @@ namespace PyriteSharp.source.Syntax.Parser;
 
 public class Ast
 {
-    public readonly Expression Root;
-    public Ast(Expression expression)
+    public readonly Statement Root;
+    public Ast(Statement expression)
     {
         Root = expression;
     }

@@ -316,6 +316,16 @@ public class Lexer
                 _currenttext += _current;
                 Advance();
                 break;
+            case '{':
+                _tokentype = TokenType.LEFT_BRACKET;
+                _currenttext += _current;
+                Advance();
+                break;
+            case '}':
+                _tokentype = TokenType.RIGHT_BRACKET;
+                _currenttext += _current;
+                Advance();
+                break;
             default:
                 if (char.IsDigit(_current) || _current is '.' or '_')
                 {

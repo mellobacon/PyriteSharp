@@ -44,10 +44,29 @@ public class Parser
 
     public Ast Parse()
     {
-        Expression expression = ParseExpression();
+        Statement expression = ParseStatement();
         return new Ast(expression);
     }
 
+    private Statement ParseStatement()
+    {
+        if (_current.Tokentype == TokenType.LEFT_BRACKET)
+        {
+            Token left = GetNextToken();
+            List<Statement> expressions = new List<Statement>();
+            while (_current.Tokentype != TokenType.RIGHT_BRACKET)
+            {
+                Statement expression = ParseStatement();
+                expressions.Add(expression);
+            }
+            
+            Token right = GetNextToken();
+            return new BlockStatement(left, expressions, right);
+        }
+        Expression e = ParseExpression();
+        return new ExpressionStatement(e);
+    }
+    
     private Expression ParseExpression()
     {
         return ParseAssignmentExpression();

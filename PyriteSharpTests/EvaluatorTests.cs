@@ -53,6 +53,8 @@ public class EvaluatorTests
             ("\"thing\"", "thing"),
             ("\"thing1\" + \"thing2\"", "thing1thing2"),
             ("\"thing1\" * 2", "thing1thing1"),
+            ("{ x = 5 }", 5),
+            ("{ 5 * 10 }", 50)
         };
         foreach ((string text, object value) in evals)
         {

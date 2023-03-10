@@ -6,9 +6,9 @@ public class Evaluator
 {
     private readonly Dictionary<string, object?> _variables;
     private object? value;
-    private readonly BoundExpression _root;
+    private readonly BoundStatement _root;
 
-    public Evaluator(BoundExpression expression, Dictionary<string, object?> variables)
+    public Evaluator(BoundStatement expression, Dictionary<string, object?> variables)
     {
         _root = expression;
         _variables = variables;
@@ -16,14 +16,32 @@ public class Evaluator
 
     public object? Evaluate()
     {
-        value = EvaluateExpression(_root);
+        EvaluateStatement(_root);
         return value;
+    }
+
+    private void EvaluateStatement(BoundStatement statement)
+    {
+        switch (statement)
+        {
+            case BoundBlockStatement b:
+                foreach (var s in b.Statements)
+                {
+                    EvaluateStatement(s);
+                }
+                break;
+            case BoundExpressionStatement e:
+                value = EvaluateExpression(e.Expression);
+                break;
+        }
     }
 
     private object? EvaluateExpression(BoundExpression expression)
     {
         switch (expression.BoundType)
         {
+            case BoundType.STATEMENT:
+                return EvaluateExpression(expression);
             case BoundType.ASSIGNMENT:
                 return EvaluateAssignmentExpression((BoundAssignmentExpression)expression);
             case BoundType.BINARY:
