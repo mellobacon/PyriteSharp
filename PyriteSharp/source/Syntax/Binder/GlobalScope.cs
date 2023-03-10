@@ -3,7 +3,7 @@
 public struct GlobalScope
 {
     public readonly BoundStatement Statement;
-    public readonly Dictionary<string, object?> Variables;
+    public readonly Dictionary<Variable, object?> Variables;
 
     public GlobalScope(BoundStatement e, Scope scope)
     {

@@ -4,11 +4,11 @@ namespace PyriteSharp.source.Syntax.Evaluator;
 
 public class Evaluator
 {
-    private readonly Dictionary<string, object?> _variables;
+    private readonly Dictionary<Variable, object?> _variables;
     private object? value;
     private readonly BoundStatement _root;
 
-    public Evaluator(BoundStatement expression, Dictionary<string, object?> variables)
+    public Evaluator(BoundStatement expression, Dictionary<Variable, object?> variables)
     {
         _root = expression;
         _variables = variables;
@@ -55,7 +55,7 @@ public class Evaluator
 
     private object? EvaluateAssignmentExpression(BoundAssignmentExpression expression)
     {
-        if (_variables[expression.Variable.Name] == null)
+        if (_variables[expression.Variable] == null)
         {
             object? v = EvaluateExpression(expression.Expression);
 
@@ -69,7 +69,7 @@ public class Evaluator
                 _ => v
             };
 
-            dynamic? variable = _variables[expression.Variable.Name] switch
+            dynamic? variable = _variables[expression.Variable] switch
             {
                 double d => d,
                 float f => f,
@@ -100,8 +100,8 @@ public class Evaluator
                 }
                 
             }
-            _variables[expression.Variable.Name] = variable;
-            return _variables[expression.Variable.Name];
+            _variables[expression.Variable] = variable;
+            return _variables[expression.Variable];
         }
 
         return null;
